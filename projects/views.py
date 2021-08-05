@@ -7,12 +7,12 @@ from .forms import ProjectForm
 def projects(request):
     projects_obj = Project.objects.all()
     context = {'projects': projects_obj}
-    return render(request, 'projects.html', context)
+    return render(request, 'projects/projects.html', context)
 
 
 def project(request, pk):
     project_obj = Project.objects.get(id=pk)
-    return render(request, 'single-projects.html', {'project': project_obj})
+    return render(request, 'projects/single-projects.html', {'project': project_obj})
 
 
 def create_project(request):
@@ -25,7 +25,7 @@ def create_project(request):
             return redirect('projects')
 
     context = {'form': form}
-    return render(request, "project_form.html", context)
+    return render(request, "projects/project_form.html", context)
 
 
 def update_project(request, pk):
@@ -39,7 +39,7 @@ def update_project(request, pk):
             return redirect('projects')
 
     context = {'form': form}
-    return render(request, "project_form.html", context)
+    return render(request, "projects/project_form.html", context)
 
 
 def delete_project(request, pk):
@@ -49,4 +49,4 @@ def delete_project(request, pk):
         return redirect('projects')
 
     context = {'object': project}
-    return render(request, "delete_template.html", context)
+    return render(request, "projects/delete_template.html", context)

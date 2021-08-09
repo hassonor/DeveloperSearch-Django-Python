@@ -40,7 +40,7 @@
                 </div>
                 <p class="dev__info">{{ profile.bio|slice:"450"}}</p>
                 <div class="dev__skills">
-                    {% for skill in profile.skill_set.all %}
+                    {% for skill in profile.skill_set.all|slice:"5" %}
                   <span class="tag tag--pill tag--main">
                     <small>{{ skill }}</small>
                   </span>

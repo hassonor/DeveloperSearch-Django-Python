@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Project
+from django.db.models import Q
+
+from .models import Project, Tag
 from .forms import ProjectForm
+from .utils import search_projects
 
 
 def projects(request):
-    projects_obj = Project.objects.all()
-    context = {'projects': projects_obj}
+    projects_obj, search_query = search_projects(request)
+    context = {'projects': projects_obj, 'search_query': search_query}
     return render(request, 'projects/projects.html', context)
 
 
@@ -31,6 +34,7 @@ def create_project(request):
     context = {'form': form}
     return render(request, "projects/project_form.html", context)
 
+
 @login_required(login_url="login")
 def update_project(request, pk):
     profile = request.user.profile
@@ -45,6 +49,7 @@ def update_project(request, pk):
 
     context = {'form': form}
     return render(request, "projects/project_form.html", context)
+
 
 @login_required(login_url="login")
 def delete_project(request, pk):

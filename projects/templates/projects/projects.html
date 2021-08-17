@@ -62,7 +62,7 @@
         </div>
       </div>
     </section>
-
+    {% include 'pagination.html' with queryset=projects custom_range=custom_range %}
   </main>
 
 {% endblock content %}

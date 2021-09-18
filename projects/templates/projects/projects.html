@@ -1,15 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
 
-{#<table>#}
-{##}
-{#           <tr>#}
-{#               <td><a href="{% url 'update-project' project.id %}">Edit</a></td>#}
-{#               <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>#}
-{#           <td><a href="{% url 'project' project.id %}">View</a></td>#}
-{#           </tr>#}
-{#</table>#}
-
       <main class="projects">
     <section class="hero-section text-center">
       <div class="container container--narrow">
@@ -38,7 +29,7 @@
           <div class="column">
             <div class="card project">
               <a href="{% url 'project' project.id %}" class="project">
-                <img class="project__thumbnail" src="{{ project.featured_image.url }}" alt="project thumbnail" />
+                <img class="project__thumbnail" src="{{ project.imageURL }}" alt="project thumbnail" />
                 <div class="card__body">
                   <h3 class="project__title">{{ project.title }}</h3>
                   <p><a class="project__author" href="{% url 'user-profile' project.owner.id %}">By {{ project.owner.name }}</a></p>
